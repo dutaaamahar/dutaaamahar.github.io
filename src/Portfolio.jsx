@@ -6,7 +6,7 @@ const data = {
   location: "Jakarta, Indonesia",
   company: "PT Neural Technologies Indonesia",
   bio: "I design and automate data pipelines at PT Neural Technologies Indonesia — from ETL orchestration and data migration to real-time integration and analytics-ready warehouses.",
-  skills: ["Apache Airflow", "Apache NiFi", "PostgreSQL", "MySQL", "ClickHouseq", "Python", "SQL", "Pandas", "ETL Development", "Workflow Automation"],
+  skills: ["Apache Airflow", "Apache NiFi", "PostgreSQL", "MySQL", "ClickHouse", "Python", "SQL", "Pandas", "ETL Development", "Workflow Automation"],
   experience: [
     { role: "Database Engineer", company: "PT Neural Technologies Indonesia", desc: "Builds and manages ETL pipelines and data integrations supporting scalable, efficient data systems." },
     { role: "Data Scientist", company: "PT Neural Technologies Indonesia", desc: "Processes and analyzes data to generate insights, forecasting, and anomaly detection." },
