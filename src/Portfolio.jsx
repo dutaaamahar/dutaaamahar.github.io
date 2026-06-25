@@ -361,7 +361,7 @@ export default function Portfolio() {
   return (
     <div style={styles.root}>
       <nav style={styles.nav}>
-        <span style={styles.navBrand}>Dwi Duta M.</span>
+        <span style={styles.navBrand}>{data.name}</span>
         <div style={styles.navLinks}>
           {[["About", "about"], ["Projects", "projects"], ["Certs", "certs"], ["Contact", "contact"]].map(([label, target]) => (
             <NavLink key={target} label={label} target={target} />
