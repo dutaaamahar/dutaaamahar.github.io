@@ -6,7 +6,7 @@ const data = {
   location: "Jakarta, Indonesia",
   company: "PT Neural Technologies Indonesia",
   bio: "I design and automate data pipelines at PT Neural Technologies Indonesia — from ETL orchestration and data migration to real-time integration and analytics-ready warehouses.",
-  skills: ["Apache Airflow", "Apache NiFi", "PostgreSQL", "MySQL", "ClickHouse", "Python", "SQL", "Pandas", "ETL Development", "Workflow Automation"],
+  skills: ["ETL Pipelines", "Data Warehousing", "Real-time Integration", "Anomaly Detection", "Traffic Forecasting", "Pipeline Automation", "Data Migration", "Analytics Engineering", "Workflow Orchestration", "Data Modeling"],
   experience: [
     { role: "Database Engineer", company: "PT Neural Technologies Indonesia", desc: "Builds and manages ETL pipelines and data integrations supporting scalable, efficient data systems." },
     { role: "Data Scientist", company: "PT Neural Technologies Indonesia", desc: "Processes and analyzes data to generate insights, forecasting, and anomaly detection." },
@@ -26,6 +26,7 @@ const data = {
       objective: "Predict payload traffic growth and provide early anomaly indicators vs. forecast baseline.",
       insight: "Traffic spikes at national events (e.g. Eid). Forecast to 2026 projects payload nearing 80K TB — on track with client targets. MAPE: 4.54%",
       stats: [],
+      techStack: ["Python", "Time Series", "Apache Airflow", "PostgreSQL", "Pandas", "Matplotlib"],
       images: [
         { url: "/images/telecom_forecast_payload_20260513.png", caption: "Actual vs forecast time series chart" },
         { url: "/images/process_flow_adaptive_projection.png", caption: "Process flow adaptive projection" },
@@ -42,6 +43,7 @@ const data = {
         { num: "25M+", label: "Records / day" },
         { num: "50%", label: "Less manual work" },
       ],
+      techStack: ["PostgreSQL", "Citus", "Apache NiFi", "SQL", "ETL Development", "Workflow Automation"],
       images: [
         { url: "/images/sandbox_unification_architecture.png", caption: "PostgreSQL Citus data warehouse architecture" },
         { url: "/images/pipeline_process_ran_cell_week.png", caption: "Radio Weekly ETL pipeline in Apache NiFi" },
@@ -54,19 +56,22 @@ const data = {
       objective: "Simulate a full production ETL environment with modular layer architecture.",
       insight: "Fully automated pipeline using Apache NiFi with CSV/SFTP ingestion, transformation, validation, and centralized PostgreSQL storage.",
       stats: [],
+      techStack: ["Apache NiFi", "PostgreSQL", "Python", "CSV", "SFTP", "ETL Development"],
+      dashboardUrl: "https://datastudio.google.com/reporting/72adb5ed-0802-4621-b737-23dbb450f2e5",
       images: [
         { url: "/images/system_architecture.png", caption: "ETL architecture layer diagram" },
         { url: "/images/pipeline_process_revenue_city_day.png", caption: "Apache NiFi pipeline flow" },
+        { url: "/images/sandbox_monitoring_dashboard.png", caption: "Monitoring dashboard" },
       ],
     },
   ],
   certs: [
-    { issuer: "Stanford · Coursera", name: "Machine Learning Specialization", date: "Apr 2023" },
-    { issuer: "DeepLearning.AI · Coursera", name: "TensorFlow Developer Professional Certificate", date: "May 2023" },
-    { issuer: "DeepLearning.AI · Coursera", name: "TensorFlow: Data and Deployment Specialization", date: "May 2023" },
-    { issuer: "DeepLearning.AI · Coursera", name: "Structuring Machine Learning Projects", date: "May 2023" },
     { issuer: "Udemy", name: "Introduction to Apache NiFi | Cloudera DataFlow HDF 2.0", date: "Mar 2026" },
     { issuer: "TensorFlow", name: "TensorFlow Developer Certificate", date: "Sep 2023 – Sep 2026" },
+    { issuer: "DeepLearning.AI · Coursera", name: "TensorFlow: Data and Deployment Specialization", date: "May 2023" },
+    { issuer: "DeepLearning.AI · Coursera", name: "Structuring Machine Learning Projects", date: "May 2023" },
+    { issuer: "DeepLearning.AI · Coursera", name: "DeepLearning.AI TensorFlow Developer Specialization", date: "May 2023" },
+    { issuer: "DeepLearning.AI · Coursera", name: "Machine Learning Specialization", date: "Apr 2023" },
   ],
   contact: {
     phone: "+62 812 2687 5848",
@@ -87,8 +92,8 @@ const styles = {
   eyebrow: { fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: "1rem" },
   h1: { fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1.08, marginBottom: "1.25rem", color: "#0a0a0a" },
   heroDesc: { fontSize: 16, color: "#555", lineHeight: 1.75, maxWidth: 540, marginBottom: "2rem" },
-  chipRow: { display: "flex", flexWrap: "wrap", gap: 8 },
-  chip: { fontSize: 12, padding: "4px 12px", borderRadius: 999, border: "1px solid #e8e8e8", color: "#666", background: "#fafafa" },
+  chip: { fontSize: 12, padding: "4px 12px", borderRadius: 999, border: "1px solid #e8e8e8", color: "#666", background: "#fafafa", whiteSpace: "nowrap", flexShrink: 0 },
+  chipSm: { fontSize: 11, padding: "3px 10px", borderRadius: 999, border: "1px solid #efefef", color: "#888", background: "#fafafa", whiteSpace: "nowrap", flexShrink: 0 },
   divider: { border: "none", borderTop: "1px solid #f0f0f0", margin: 0 },
   sectionLabel: { fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#bbb", marginBottom: "2rem" },
   aboutGrid: { display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "3rem" },
@@ -130,15 +135,81 @@ const styles = {
   contactItem: { display: "flex", alignItems: "center", gap: 12, fontSize: 14, color: "#555", textDecoration: "none" },
   contactIcon: { width: 36, height: 36, borderRadius: 8, border: "1px solid #f0f0f0", display: "flex", alignItems: "center", justifyContent: "center", background: "#fafafa", flexShrink: 0 },
   footer: { borderTop: "1px solid #f0f0f0", padding: "2rem", textAlign: "center", fontSize: 12, color: "#ccc", maxWidth: 760, margin: "0 auto" },
+  dashboardBtn: {
+    display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, color: "#555",
+    border: "1px solid #e8e8e8", borderRadius: 999, padding: "5px 14px",
+    textDecoration: "none", marginBottom: "1.25rem", background: "#fafafa",
+  },
+  marqueeWrapper: { overflow: "hidden", position: "relative", marginBottom: "2rem" },
+  marqueeWrapperSm: { overflow: "hidden", position: "relative", marginBottom: "1.25rem", marginTop: "0.75rem" },
+  marqueeTrack: { display: "flex", gap: 8, width: "max-content" },
 };
+
+// Inject keyframe animation once
+const marqueeCSS = `
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 18s linear infinite;
+}
+.marquee-track-sm {
+  animation: marquee 12s linear infinite;
+}
+.marquee-track:hover,
+.marquee-track-sm:hover {
+  animation-play-state: paused;
+}
+.marquee-fade::before,
+.marquee-fade::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40px;
+  z-index: 1;
+  pointer-events: none;
+}
+.marquee-fade::before { left: 0; background: linear-gradient(to right, #fff, transparent); }
+.marquee-fade::after  { right: 0; background: linear-gradient(to left, #fff, transparent); }
+`;
+
+function InjectStyles() {
+  useEffect(() => {
+    const id = "marquee-styles";
+    if (!document.getElementById(id)) {
+      const tag = document.createElement("style");
+      tag.id = id;
+      tag.textContent = marqueeCSS;
+      document.head.appendChild(tag);
+    }
+  }, []);
+  return null;
+}
+
+function MarqueeChips({ items, small = false }) {
+  // Duplicate items so the loop is seamless
+  const doubled = [...items, ...items];
+  return (
+    <div
+      style={small ? styles.marqueeWrapperSm : styles.marqueeWrapper}
+      className="marquee-fade"
+    >
+      <div
+        style={styles.marqueeTrack}
+        className={small ? "marquee-track-sm" : "marquee-track"}
+      >
+        {doubled.map((item, i) => (
+          <span key={i} style={small ? styles.chipSm : styles.chip}>{item}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function NavLink({ label, target }) {
   const scroll = () => document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
   return <button style={styles.navLink} onClick={scroll}>{label}</button>;
-}
-
-function Chip({ label }) {
-  return <span style={styles.chip}>{label}</span>;
 }
 
 function Hero() {
@@ -147,9 +218,7 @@ function Hero() {
       <p style={styles.eyebrow}>{data.role} · {data.location}</p>
       <h1 style={styles.h1}>Building data systems<br />that scale.</h1>
       <p style={styles.heroDesc}>{data.bio}</p>
-      <div style={styles.chipRow}>
-        {data.skills.map((s) => <Chip key={s} label={s} />)}
-      </div>
+      <MarqueeChips items={data.skills} />
     </div>
   );
 }
@@ -206,34 +275,13 @@ function Slideshow({ images }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <img
-        src={images[current].url}
-        alt={images[current].caption}
-        style={styles.slideshowImg}
-      />
+      <img src={images[current].url} alt={images[current].caption} style={styles.slideshowImg} />
       <div style={overlayStyle}>
-        <button
-          style={{ ...styles.slideshowBtn, left: 10 }}
-          onClick={(e) => { e.stopPropagation(); prev(); }}
-          aria-label="Previous image"
-        >
-          {"<"}
-        </button>
-        <button
-          style={{ ...styles.slideshowBtn, right: 10 }}
-          onClick={(e) => { e.stopPropagation(); next(); }}
-          aria-label="Next image"
-        >
-          {">"}
-        </button>
+        <button style={{ ...styles.slideshowBtn, left: 10 }} onClick={(e) => { e.stopPropagation(); prev(); }} aria-label="Previous image">{"<"}</button>
+        <button style={{ ...styles.slideshowBtn, right: 10 }} onClick={(e) => { e.stopPropagation(); next(); }} aria-label="Next image">{">"}</button>
         <div style={styles.slideshowDots}>
           {images.map((_, i) => (
-            <button
-              key={i}
-              style={{ ...styles.dot, background: i === current ? "#fff" : "rgba(255,255,255,0.5)" }}
-              onClick={() => setCurrent(i)}
-              aria-label={`Go to image ${i + 1}`}
-            />
+            <button key={i} style={{ ...styles.dot, background: i === current ? "#fff" : "rgba(255,255,255,0.5)" }} onClick={() => setCurrent(i)} aria-label={`Go to image ${i + 1}`} />
           ))}
         </div>
         <div style={styles.slideshowCaption}>{images[current].caption}</div>
@@ -253,6 +301,22 @@ function Projects() {
             <span style={styles.clientTag}>{p.client}</span>
           </div>
           {p.images && p.images.length > 0 && <Slideshow images={p.images} />}
+          {p.dashboardUrl && (
+            <a href={p.dashboardUrl} target="_blank" rel="noopener noreferrer" style={styles.dashboardBtn}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              View Live Dashboard
+            </a>
+          )}
+          {p.techStack && p.techStack.length > 0 && (
+            <div>
+              <div style={{ fontSize: 10, color: "#bbb", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>Tech Stack</div>
+              <MarqueeChips items={p.techStack} small />
+            </div>
+          )}
           <p style={styles.projectDesc}>{p.desc}</p>
           <div style={styles.projectMeta}>
             <div style={styles.metaBlock}>
@@ -360,6 +424,7 @@ export default function Portfolio() {
 
   return (
     <div style={styles.root}>
+      <InjectStyles />
       <nav style={styles.nav}>
         <span style={styles.navBrand}>{data.name}</span>
         <div style={styles.navLinks}>
